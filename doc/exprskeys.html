@@ -1,0 +1,2524 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Expressions and Keys &mdash; Neper 4.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="File and Directory Formats" href="fileformat.html" />
+    <link rel="prev" title="Visualization Module (-V)" href="neper_v.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Neper
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="copying.html">Conditions of Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="neper_t.html">Tessellation Module (-T)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="neper_m.html">Meshing Module (-M)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="neper_s.html">Simulation Module (-S)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="neper_v.html">Visualization Module (-V)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Expressions and Keys</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mathematical-and-logical-expressions">Mathematical and Logical Expressions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#functions">Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#binary-operators">Binary Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ternary-operators">Ternary Operators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statistical-distributions">Statistical Distributions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tessellation-keys">Tessellation Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#raster-tessellation-keys">Raster Tessellation Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tessellation-optimization-keys">Tessellation Optimization Keys</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#time-keys">Time Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#variable-keys">Variable Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#objective-function-value-keys">Objective Function Value Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statistical-distribution-keys">Statistical Distribution Keys</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#raster-tessellation-voxel-keys">Raster Tessellation Voxel Keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#orientation-optimization-keys">Orientation Optimization Keys</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id29">Variable Keys</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mesh-keys">Mesh Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#point-keys">Point Keys</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#simulation-results">Simulation Results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rotations-and-orientations">Rotations and Orientations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rotation-and-orientation-descriptors">Rotation and Orientation Descriptors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ideal-orientations">Ideal Orientations</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#crystal-symmetries">Crystal Symmetries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#colors-and-color-maps">Colors and Color Maps</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#colors">Colors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#color-maps">Color Maps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#color-map-for-integer-values">Color Map for Integer Values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#color-maps-for-real-value">Color Maps for Real Value</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html">File and Directory Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpl.html">GNU General Public License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdl.html">GNU Free Documentation License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Neper</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Expressions and Keys</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/exprskeys.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="fileformat.html" class="btn btn-neutral float-right" title="File and Directory Formats" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="neper_v.html" class="btn btn-neutral float-left" title="Visualization Module (-V)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="expressions-and-keys">
+<span id="id1"></span><h1>Expressions and Keys<a class="headerlink" href="#expressions-and-keys" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="mathematical-and-logical-expressions">
+<span id="id2"></span><h2>Mathematical and Logical Expressions<a class="headerlink" href="#mathematical-and-logical-expressions" title="Permalink to this headline">¶</a></h2>
+<p>Neper handles mathematical expressions thanks to the <strong class="program">muparser</strong> library. The expression must contain no space, tabulation or new-line characters, and match the following syntax. <a class="footnote-reference" href="#muparser-doc" id="id3">[1]</a></p>
+<div class="section" id="functions">
+<h3>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h3>
+<p>The following table gives an overview of the functions supported by the default implementation. It lists the function names, the number of arguments and a brief description.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="79%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Name</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">sin</span></code></td>
+<td>sine function</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cos</span></code></td>
+<td>cosine function</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">tan</span></code></td>
+<td>tangens function</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">asin</span></code></td>
+<td>arcus sine function</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">acos</span></code></td>
+<td>arcus cosine function</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">atan</span></code></td>
+<td>arcus tangens function</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">sinh</span></code></td>
+<td>hyperbolic sine function</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cosh</span></code></td>
+<td>hyperbolic cosine</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">tanh</span></code></td>
+<td>hyperbolic tangens function</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">asinh</span></code></td>
+<td>hyperbolic arcus sine function</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">acosh</span></code></td>
+<td>hyperbolic arcus tangens function</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">atanh</span></code></td>
+<td>hyperbolic arcur tangens function</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">log2</span></code></td>
+<td>logarithm to the base 2</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">log10</span></code></td>
+<td>logarithm to the base 10</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">log</span></code></td>
+<td>logarithm to the base 10</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">ln</span></code></td>
+<td>logarithm to base <img class="math" src="_images/math/c71eb98acb3f28432a92c568d14888e2211bcbd2.png" alt="e"/> (2.71828…)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">exp</span></code></td>
+<td>e raised to the power of x</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">sqrt</span></code></td>
+<td>square root of a value</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">sign</span></code></td>
+<td>sign function: -1 if <img class="math" src="_images/math/8802cd7b9d4fed9f99957c9530cc047b13bc678f.png" alt="x&lt;0"/>; 1 if <img class="math" src="_images/math/b59962ba8baee393e3af01aa875db6dae65a8314.png" alt="x&gt;0"/></td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rint</span></code></td>
+<td>round to nearest integer</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">abs</span></code></td>
+<td>absolute value</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;min&gt;</span></code></td>
+<td>min of all arguments</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;max&gt;</span></code></td>
+<td>max of all arguments</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">sum</span></code></td>
+<td>sum of all arguments</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">avg</span></code></td>
+<td>mean value of all arguments</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="binary-operators">
+<h3>Binary Operators<a class="headerlink" href="#binary-operators" title="Permalink to this headline">¶</a></h3>
+<p>The following table lists the default binary operators supported by the parser.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="49%" />
+<col width="30%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Operator</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Priority</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&amp;&amp;</span></code></td>
+<td>logical and</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">||</span></code></td>
+<td>logical or</td>
+<td>2</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;=</span></code></td>
+<td>less or equal</td>
+<td>4</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&gt;=</span></code></td>
+<td>greater or equal</td>
+<td>4</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">=</span></code></td>
+<td>not equal</td>
+<td>4</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">==</span></code></td>
+<td>equal</td>
+<td>4</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&gt;</span></code></td>
+<td>greater than</td>
+<td>4</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;</span></code></td>
+<td>less than</td>
+<td>4</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">+</span></code></td>
+<td>addition</td>
+<td>5</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">-</span></code></td>
+<td>subtraction</td>
+<td>5</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">*</span></code></td>
+<td>multiplication</td>
+<td>6</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">/</span></code></td>
+<td>division</td>
+<td>6</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">^</span></code></td>
+<td>raise x to the power of y</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ternary-operators">
+<h3>Ternary Operators<a class="headerlink" href="#ternary-operators" title="Permalink to this headline">¶</a></h3>
+<p>The parser has built in support for the if-then-else operator. It uses lazy evaluation in order to make sure only the necessary branch of the expression is evaluated.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Operator</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">?:</span></code></td>
+<td>if-then-else operator, following the C/C++ syntax: <code class="xref c c-data docutils literal notranslate"><span class="pre">(test)?value_if_true:value_if_false</span></code>.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="statistical-distributions">
+<span id="id4"></span><h3>Statistical Distributions<a class="headerlink" href="#statistical-distributions" title="Permalink to this headline">¶</a></h3>
+<p>The following table lists the statistical distributions.  Custom endpoints (not indicated) can also be added as arguments, as described in the following.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="41%" />
+<col width="18%" />
+<col width="40%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Operator</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Information</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">normal(&lt;mean&gt;,&lt;sigma&gt;)</span></code></td>
+<td>normal</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lognormal(&lt;mean&gt;,&lt;sigma&gt;)</span></code></td>
+<td>lognormal</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">dirac(&lt;mean&gt;)</span></code></td>
+<td>Dirac</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">beta(&lt;x&gt;,&lt;y&gt;)</span></code></td>
+<td>beta function</td>
+<td><img class="math" src="_images/math/b59962ba8baee393e3af01aa875db6dae65a8314.png" alt="x&gt;0"/>, <img class="math" src="_images/math/bb71359015616a2b25786ad8ad13c3e4d5542032.png" alt="y&gt;0"/></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lorentzian(&lt;mean&gt;,&lt;sigma&gt;)</span></code></td>
+<td>Lorentzian</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">studentst(&lt;mean&gt;,&lt;sigma&gt;)</span></code></td>
+<td>Student’s t</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">weibull(k,&lt;sigma&gt;)</span></code></td>
+<td>Weibull</td>
+<td><img class="math" src="_images/math/526a3ca86fdbf246e12e2a28b70bf2cbef4ea033.png" alt="k &gt; 0"/> represents the shape</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">breitwigner(&lt;mean&gt;,&lt;sigma&gt;[,&lt;gamma&gt;])</span></code></td>
+<td>Breit-Wigner</td>
+<td><img class="math" src="_images/math/81b3d2585b471a50ba98765a63dbd90ad26448e1.png" alt="&lt;gamma&gt; \geq 0"/>, default 1</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">expnormal(&lt;mean&gt;,&lt;sigma&gt;[,&lt;gamma&gt;])</span></code></td>
+<td>exp-normal</td>
+<td><img class="math" src="_images/math/fd7870d4928f850a553ff9eff4fcd58c7cb89b7d.png" alt="&lt;gamma&gt; &gt; 0"/>, default <img class="math" src="_images/math/38616099b60f8fc7ff6d406871d39dbd636084f6.png" alt="&lt;sigma&gt;"/></td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">moffat(&lt;mean&gt;,&lt;sigma&gt;[,&lt;gamma&gt;])</span></code></td>
+<td>Moffat</td>
+<td><img class="math" src="_images/math/fd7870d4928f850a553ff9eff4fcd58c7cb89b7d.png" alt="&lt;gamma&gt; &gt; 0"/>, default 1</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">pearson7(&lt;mean&gt;,&lt;sigma&gt;[,&lt;gamma&gt;])</span></code></td>
+<td>Pearson type VII</td>
+<td>default <img class="math" src="_images/math/3f505806e957f43585ead7cf1ba9751fabaddef6.png" alt="&lt;gamma&gt; = 1.5"/></td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">pseudovoigt(&lt;mean&gt;,&lt;sigma&gt;[,&lt;gamma&gt;])</span></code></td>
+<td>Pseudo-Voigt</td>
+<td><img class="math" src="_images/math/2b126d4ceb69cbfc8947f4711bd73a934a3ce604.png" alt="&lt;gamma&gt; \in [0,\,1]"/>, default 0.5</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">skewnormal(&lt;mean&gt;,&lt;sigma&gt;[,&lt;gamma&gt;])</span></code></td>
+<td>skewed normal</td>
+<td>default <img class="math" src="_images/math/798dc95c95cecab9ace50b348f365f2bc1554006.png" alt="&lt;gamma&gt; = &lt;sigma&gt;"/></td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">custom(&lt;file_name&gt;)</span></code></td>
+<td>custom</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<p><code class="xref c c-data docutils literal notranslate"><span class="pre">mean</span></code> represents the mean (or centre), and <code class="xref c c-data docutils literal notranslate"><span class="pre">sigma</span></code> represents the standard deviation (or scale, <img class="math" src="_images/math/7c8a95da2fdb2ca3a500bb908e9ed06d063e47e5.png" alt="&gt; 0"/>). <code class="xref c c-data docutils literal notranslate"><span class="pre">gamma</span></code> depends on the distribution function (see the above table). For all distributions, custom endpoints can be added as last arguments, as <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;from_value&gt;,&lt;to_value&gt;</span></code>, where <code class="xref c c-data docutils literal notranslate"><span class="pre">from_value</span></code> is the lower endpoint and <code class="xref c c-data docutils literal notranslate"><span class="pre">to_value</span></code> is the upper endpoint. The parameter keywords do not need to be provided, but, when they are, the parameters can be given in any order, as in <code class="xref c c-data docutils literal notranslate"><span class="pre">moffat(gamma=1,from=0,to=1,sigma=0.1,mean=0.5)</span></code>.  Endpoints are considered inclusive by default, but exclusive endpoints can be specified using <code class="xref c c-data docutils literal notranslate"><span class="pre">fromexclusive=&lt;from_value&gt;</span></code> and <code class="xref c c-data docutils literal notranslate"><span class="pre">toexclusive=&lt;to_value&gt;</span></code> (<code class="xref c c-data docutils literal notranslate"><span class="pre">frominclusive=&lt;from_value&gt;</span></code> and <code class="xref c c-data docutils literal notranslate"><span class="pre">toinclusive=&lt;to_value&gt;</span></code> can be used for inclusive endpoints).  String completion is available for the keywords.  Finally, a sum of distributions of increasing averages can be provided, as in <code class="xref c c-data docutils literal notranslate"><span class="pre">0.3*lognormal(0.5,0.1)+0.7*normal(1,0.1)</span></code>.</p>
+<p>In the case of the <code class="xref c c-data docutils literal notranslate"><span class="pre">custom</span></code> distribution, the numerical distribution must be provided in the file. The file must contain the x and y values of the distribution on successive lines.  The x values must be provided in ascending order and form a regular grid.  The distribution must contain at least 3 points and does not need to integrate to 1.</p>
+</div>
+</div>
+<div class="section" id="tessellation-keys">
+<span id="id5"></span><h2>Tessellation Keys<a class="headerlink" href="#tessellation-keys" title="Permalink to this headline">¶</a></h2>
+<p>Available keys for a tessellation itself are provided below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="51%" />
+<col width="26%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+<td><strong>Apply to</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">dim</span></code></td>
+<td>dimension</td>
+<td>tess</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vernb</span></code></td>
+<td>number of vertices</td>
+<td>tess</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">edgenb</span></code></td>
+<td>number of edges</td>
+<td>tess</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">facenb</span></code></td>
+<td>number of faces</td>
+<td>tess</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">polynb</span></code></td>
+<td>number of polyhedra</td>
+<td>tess</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cellnb</span></code></td>
+<td>number of cells</td>
+<td>tess</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x coordinate</td>
+<td>tess</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">y</span></code></td>
+<td>y coordinate</td>
+<td>tess</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">z</span></code></td>
+<td>z coordinate</td>
+<td>tess</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">coo</span></code></td>
+<td>x, y and z coordinates</td>
+<td>tess</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">area</span></code></td>
+<td>surface area</td>
+<td>tess</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vol</span></code></td>
+<td>volume</td>
+<td>tess</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">size</span></code></td>
+<td>size (surface area/volume in 2D/3D)</td>
+<td>tess</td>
+</tr>
+</tbody>
+</table>
+<p>Available keys for tessellation seeds, vertices, edges, faces, polyhedra and cell groups are provided below.  Also note that the descriptors apply to <em>cells</em> if they are tagged to apply to <em>polyhedra</em> and the tessellation is 3D and <em>faces</em> and the tessellation is 2D.  You may also replace, in the tessellation keys themselves, <code class="xref c c-data docutils literal notranslate"><span class="pre">poly</span></code> by <code class="xref c c-data docutils literal notranslate"><span class="pre">cell</span></code> if the tessellation is 3D and <code class="xref c c-data docutils literal notranslate"><span class="pre">face</span></code> by <code class="xref c c-data docutils literal notranslate"><span class="pre">cell</span></code> if the tessellation is 2D (it applies only in rare cases).  For example, for a 2D tessellation, you may use <code class="xref c c-data docutils literal notranslate"><span class="pre">-statcell</span> <span class="pre">ncells</span></code> instead of <code class="xref c c-data docutils literal notranslate"><span class="pre">-statface</span> <span class="pre">nfaces</span></code>. Keys specific to cells are defined accordingly in the following but also apply to <em>polys</em> is the tessellation is 3D and <em>faces</em> is the tessellations is 2D.</p>
+<p>To turn a key value into a value relative to the mean over all entities (e.g. the relative cell size), append the key expression with the <code class="xref c c-data docutils literal notranslate"><span class="pre">:rel</span></code> modifier.  To turn a key value into a value which holds for a unit cell size, append the key expression with the <code class="xref c c-data docutils literal notranslate"><span class="pre">:uc</span></code> modifier.  To use as a reference only the <em>body</em> or <em>true</em> entities (see below), append <code class="xref c c-data docutils literal notranslate"><span class="pre">b</span></code> or <code class="xref c c-data docutils literal notranslate"><span class="pre">t</span></code> to the modifiers, respectively.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="52%" />
+<col width="26%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+<td><strong>Apply to</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">id</span></code></td>
+<td>identifier</td>
+<td>seed, ver, edge, face, poly, group</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x coordinate</td>
+<td>seed, ver, edge, face, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">y</span></code></td>
+<td>y coordinate</td>
+<td>seed, ver, edge, face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">z</span></code></td>
+<td>z coordinate</td>
+<td>seed, ver, edge, face, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">coo</span></code></td>
+<td>x, y and z coordinates</td>
+<td>seed, ver, edge, face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;xmin&gt;</span></code></td>
+<td>minimum x coordinate</td>
+<td>edge, face, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;ymin&gt;</span></code></td>
+<td>minimum y coordinate</td>
+<td>edge, face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;zmin&gt;</span></code></td>
+<td>minimum z coordinate</td>
+<td>edge, face, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;xmax&gt;</span></code></td>
+<td>maximum x coordinate</td>
+<td>edge, face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;ymax&gt;</span></code></td>
+<td>maximum y coordinate</td>
+<td>edge, face, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;zmax&gt;</span></code></td>
+<td>maximum z coordinate</td>
+<td>edge, face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">w</span></code></td>
+<td>weight (width for a lamellar tessellation)</td>
+<td>seed, cell</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">true</span></code></td>
+<td>true level</td>
+<td>ver, edge, face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">body</span></code></td>
+<td>body level</td>
+<td>ver, edge, face, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">state</span></code></td>
+<td>state</td>
+<td>ver, edge, face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">domtype</span></code></td>
+<td>type of domain (0 if on a domain vertex, 1 if on a domain edge and 2 if on a domain face)</td>
+<td>ver, edge, face</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">domface</span></code></td>
+<td>domain face (-1 if undefined)</td>
+<td>face</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">domedge</span></code></td>
+<td>domain edge (-1 if undefined)</td>
+<td>edge</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">domver</span></code></td>
+<td>domain vertex (-1 if undefined)</td>
+<td>ver</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">scale</span></code></td>
+<td>scale</td>
+<td>face <a class="footnote-reference" href="#multiscale-face" id="id6">[2]</a></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">length</span></code></td>
+<td>length</td>
+<td>edge</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">area</span></code></td>
+<td>surface area</td>
+<td>face, poly, group</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vol</span></code></td>
+<td>volume</td>
+<td>poly, group</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">size</span></code></td>
+<td>size (surface area/volume in 2D/3D)</td>
+<td>cell, group</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">diameq</span></code></td>
+<td>equivalent diameter <a class="footnote-reference" href="#equivalent-diameter" id="id7">[3]</a></td>
+<td>face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">radeq</span></code></td>
+<td>equivalent radius (half of the eq. diameter</td>
+<td>face, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">sphericity</span></code></td>
+<td>sphericity <a class="footnote-reference" href="#sphericity" id="id8">[4]</a></td>
+<td>poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">circularity</span></code></td>
+<td>circularity <a class="footnote-reference" href="#circularity" id="id9">[5]</a></td>
+<td>face</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">convexity</span></code></td>
+<td>convexity <a class="footnote-reference" href="#convexity" id="id10">[6]</a></td>
+<td>face (only for a 2D tessellation), poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">dihangleav</span></code></td>
+<td>average dihedral angle</td>
+<td>face, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">dihanglemin</span></code></td>
+<td>minimum dihedral angle</td>
+<td>face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">dihanglemax</span></code></td>
+<td>maximum dihedral angle</td>
+<td>face, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">dihangles</span></code></td>
+<td>dihedral angles</td>
+<td>face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">ff</span></code></td>
+<td>flatness fault (in degrees)</td>
+<td>face</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">theta</span></code></td>
+<td>disorientation angle (in degrees)</td>
+<td>edge (in 2D), face (in 3D)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cyl</span></code></td>
+<td>whether or not is used to describe the circular part of a cylinder domain</td>
+<td>edge</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vernb</span></code></td>
+<td>number of vertices</td>
+<td>edge, face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vers</span></code></td>
+<td>vertices</td>
+<td>edge, face, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">edgenb</span></code></td>
+<td>number of edges</td>
+<td>ver, face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">edges</span></code></td>
+<td>edges</td>
+<td>ver, face, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">facenb</span></code></td>
+<td>number of faces</td>
+<td>ver, edge, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">faces</span></code></td>
+<td>faces</td>
+<td>ver, edge, poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">polynb</span></code></td>
+<td>number of polyhedra</td>
+<td>ver, edge, face</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">polys</span></code></td>
+<td>polyhedra</td>
+<td>ver, edge, face</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">nfacenb</span></code></td>
+<td>number of neighboring faces</td>
+<td>face</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">nfaces</span></code></td>
+<td>neighboring faces</td>
+<td>face</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">nfacenb_samedomain</span></code></td>
+<td>number of neighboring faces of the same domain (parent cell of a multiscale tessellation)</td>
+<td>face (in 2D)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">nfaces_samedomain</span></code></td>
+<td>neighboring faces of the same domain (parent cell of a multiscale tessellation)</td>
+<td>face (in 2D)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">npolynb</span></code></td>
+<td>number of neighboring polyhedra</td>
+<td>poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">npolys</span></code></td>
+<td>neighboring polyhedra</td>
+<td>poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">npolynb_samedomain</span></code></td>
+<td>number of neighboring polyhedra of the same domain (parent cell of a multiscale tessellation)</td>
+<td>poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">npolys_samedomain</span></code></td>
+<td>neighboring polyhedra of the same domain (parent cell of a multiscale tessellation)</td>
+<td>poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vercoos</span></code></td>
+<td>vertex coordinates</td>
+<td>face, poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">faceareas</span></code></td>
+<td>face surface areas</td>
+<td>poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">faceeqs</span></code></td>
+<td>face equations <a class="footnote-reference" href="#face-equation" id="id11">[7]</a></td>
+<td>poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">nseednb</span></code></td>
+<td>number of neighboring seeds</td>
+<td>poly</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">nseeds</span></code></td>
+<td>neighboring seeds <a class="footnote-reference" href="#nseeds" id="id12">[8]</a></td>
+<td>poly</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">scaleid(scale_nb)</span></code></td>
+<td>identifier of the corresponding cell at scale scale_nb</td>
+<td>cell</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lam</span></code></td>
+<td>lamella width id <a class="footnote-reference" href="#lam" id="id13">[9]</a></td>
+<td>cell</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mode</span></code></td>
+<td>mode <a class="footnote-reference" href="#mode" id="id14">[10]</a></td>
+<td>cell</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">group</span></code></td>
+<td>group</td>
+<td>cell</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">per</span></code></td>
+<td>periodic (1 if periodic, 0 otherwise)</td>
+<td>ver, edge, face (in 3D)</td>
+</tr>
+</tbody>
+</table>
+<p>Variables consisting of several values (<code class="xref c c-data docutils literal notranslate"><span class="pre">vers</span></code>, etc.) are not available for sorting
+(option <a class="reference internal" href="neper_t.html#cmdoption-sort"><code class="xref std std-option docutils literal notranslate"><span class="pre">-sort</span></code></a>).</p>
+<p>For a cell, the <code class="xref c c-data docutils literal notranslate"><span class="pre">body</span></code> and <code class="xref c c-data docutils literal notranslate"><span class="pre">true</span></code> variables are
+defined as follows,</p>
+<ul class="simple">
+<li><code class="xref c c-data docutils literal notranslate"><span class="pre">body</span></code> is an integer equal to <code class="xref c c-data docutils literal notranslate"><span class="pre">0</span></code> if the cell is at the domain boundary, i.e.if it shares at least one face with it (edge in 2D), and is equal to <code class="xref c c-data docutils literal notranslate"><span class="pre">1</span></code> or higher otherwise.  This is determined as follows: if a cell is surrounded by cells with <code class="xref c c-data docutils literal notranslate"><span class="pre">body</span></code> values equal to or higher than <code class="xref c c-data docutils literal notranslate"><span class="pre">n</span></code>, its <code class="xref c c-data docutils literal notranslate"><span class="pre">body</span></code> value is equal to <code class="xref c c-data docutils literal notranslate"><span class="pre">n</span> <span class="pre">+</span> <span class="pre">1</span></code>.  Therefore, <code class="xref c c-data docutils literal notranslate"><span class="pre">body</span></code> tends to increase with the distance to the domain boundary and can be used to define cells that may suffer from boundary effects.</li>
+<li><code class="xref c c-data docutils literal notranslate"><span class="pre">true</span></code> is an integer equal to <code class="xref c c-data docutils literal notranslate"><span class="pre">0</span></code> it the cell shape is biased by the domain boundary, and is equal to <code class="xref c c-data docutils literal notranslate"><span class="pre">1</span></code> or higher otherwise. A value higher than <code class="xref c c-data docutils literal notranslate"><span class="pre">0</span></code> is achieved if and only if any seed that would have been located outside the domain (where it could not be) would not have affected the shape of the cell. This condition is fulfilled if the distance between the seed of the cell and any of its vertices is lower than the minimum distance between a vertex of the cell and the domain boundary.  <code class="xref c c-data docutils literal notranslate"><span class="pre">true</span></code> is extended to values higher than <code class="xref c c-data docutils literal notranslate"><span class="pre">1</span></code> in the same way as body: if a cell is surrounded by cells with <code class="xref c c-data docutils literal notranslate"><span class="pre">true</span></code> values equal to or higher than <code class="xref c c-data docutils literal notranslate"><span class="pre">n</span></code>, its <code class="xref c c-data docutils literal notranslate"><span class="pre">true</span></code> value is equal to <code class="xref c c-data docutils literal notranslate"><span class="pre">n</span> <span class="pre">+</span> <span class="pre">1</span></code>.  As <code class="xref c c-data docutils literal notranslate"><span class="pre">body</span></code>, <code class="xref c c-data docutils literal notranslate"><span class="pre">true</span></code> tends to increase with the distance to the domain boundary, and <img class="math" src="_images/math/dc0b7867e6c8686e58192a40baba75bbe7f7b9d7.png" alt="true \leq body"/>.  <code class="xref c c-data docutils literal notranslate"><span class="pre">true</span></code> is especially useful for statistics on the cells (morphology, mesh, etc.), for which only cells with <img class="math" src="_images/math/557ddc909e8747eff9f456e8acdf224f2a893656.png" alt="true \geq 1"/> should be considered.</li>
+</ul>
+<p>For entities of lower dimension than cells (vertices, edges and faces), <code class="xref c c-data docutils literal notranslate"><span class="pre">body</span></code> and <code class="xref c c-data docutils literal notranslate"><span class="pre">true</span></code> are equal to the maximum <code class="xref c c-data docutils literal notranslate"><span class="pre">body`or</span> <span class="pre">:data:`true</span></code> values of the cells they belong to.</p>
+</div>
+<div class="section" id="raster-tessellation-keys">
+<span id="id15"></span><h2>Raster Tessellation Keys<a class="headerlink" href="#raster-tessellation-keys" title="Permalink to this headline">¶</a></h2>
+<p>Available keys for raster tessellation itself are provided below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="51%" />
+<col width="25%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+<td><strong>Apply to</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">dim</span></code></td>
+<td>dimension</td>
+<td>tesr</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">voxnbx</span></code></td>
+<td>number of voxels in direction x</td>
+<td>tesr</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">voxnby</span></code></td>
+<td>number of voxels in direction y</td>
+<td>tesr</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">voxnbz</span></code></td>
+<td>number of voxels in direction z</td>
+<td>tesr</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">voxnb</span></code></td>
+<td>number of voxels in total</td>
+<td>tesr</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">originx</span></code></td>
+<td>origin x coordinate</td>
+<td>tesr</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">originy</span></code></td>
+<td>origin y coordinate</td>
+<td>tesr</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">originz</span></code></td>
+<td>origin z coordinate</td>
+<td>tesr</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">voxsizex</span></code></td>
+<td>voxel size in direction x</td>
+<td>tesr</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">voxsizey</span></code></td>
+<td>voxel size in direction y</td>
+<td>tesr</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">voxsizez</span></code></td>
+<td>voxel size in direction z</td>
+<td>tesr</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rastersizex</span></code></td>
+<td>raster size in direction x</td>
+<td>tesr</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rastersizey</span></code></td>
+<td>raster size in direction y</td>
+<td>tesr</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rastersizez</span></code></td>
+<td>raster size in direction z</td>
+<td>tesr</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rastersize</span></code></td>
+<td>raster size (surface area/volume in 2D/3D)</td>
+<td>tesr</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">area</span></code></td>
+<td>surface area</td>
+<td>tesr</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vol</span></code></td>
+<td>volume</td>
+<td>tesr</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">size</span></code></td>
+<td>size (surface area/volume in 2D/3D)</td>
+<td>tesr</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x coordinate</td>
+<td>tesr</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">y</span></code></td>
+<td>y coordinate</td>
+<td>tesr</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">z</span></code></td>
+<td>z coordinate</td>
+<td>tesr</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">coo</span></code></td>
+<td>x, y and z coordinates</td>
+<td>tesr</td>
+</tr>
+</tbody>
+</table>
+<p>Available keys for raster tessellation seeds, cells, cell groups and voxels are provided below.  Mathematical and logical expressions based on these keys can also be used.  To turn a key value into a value relative to the mean over all entities (e.g.the relative cell size), append the key expression with the <code class="xref c c-data docutils literal notranslate"><span class="pre">:rel</span></code> modifier.  To turn a key value into a value which holds for a unit cell size, append the key expression with the <code class="xref c c-data docutils literal notranslate"><span class="pre">:uc</span></code> modifier.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="53%" />
+<col width="27%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+<td><strong>Applies to</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">id</span></code></td>
+<td>identifier</td>
+<td>seed, cell, group, voxel</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x coordinate</td>
+<td>seed, cell, voxel</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">y</span></code></td>
+<td>y coordinate</td>
+<td>seed, cell, voxel</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">z</span></code></td>
+<td>z coordinate</td>
+<td>seed, cell, voxel</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">coo</span></code></td>
+<td>x, y and z coordinates</td>
+<td>seed, cell, voxel</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vx</span></code></td>
+<td>x coordinate (in voxel)</td>
+<td>voxel</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vy</span></code></td>
+<td>y coordinate (in voxel)</td>
+<td>voxel</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vz</span></code></td>
+<td>z coordinate (in voxel)</td>
+<td>voxel</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vcoo</span></code></td>
+<td>x, y and z coordinates (in voxel)</td>
+<td>voxel</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vxmin</span></code></td>
+<td>minimum x coordinate (in voxel)</td>
+<td>cell</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vymin</span></code></td>
+<td>minimum y coordinate (in voxel)</td>
+<td>cell</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vzmin</span></code></td>
+<td>minimum z coordinate (in voxel)</td>
+<td>cell</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vxmax</span></code></td>
+<td>maximum x coordinate (in voxel)</td>
+<td>cell</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vymax</span></code></td>
+<td>maximum y coordinate (in voxel)</td>
+<td>cell</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vzmax</span></code></td>
+<td>maximum z coordinate (in voxel)</td>
+<td>cell</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">domvxmin</span></code></td>
+<td>domain minimum x coordinate (in voxel), always 1</td>
+<td>domain</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">domvymin</span></code></td>
+<td>domain minimum y coordinate (in voxel), always 1</td>
+<td>domain</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">domvzmin</span></code></td>
+<td>domain minimum z coordinate (in voxel), always 1</td>
+<td>domain</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">domvxmax</span></code></td>
+<td>domain maximum x coordinate (in voxel)</td>
+<td>domain</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">domvymax</span></code></td>
+<td>domain maximum y coordinate (in voxel)</td>
+<td>domain</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">domvzmax</span></code></td>
+<td>domain maximum z coordinate (in voxel)</td>
+<td>domain</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cell</span></code></td>
+<td>cell</td>
+<td>voxel</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">w</span></code></td>
+<td>Laguerre weight</td>
+<td>seed</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">area</span></code></td>
+<td>surface area</td>
+<td>cell, group (in 2D)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vol</span></code></td>
+<td>volume</td>
+<td>cell, group (in 3D)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">size</span></code></td>
+<td>size (surface area/volume in 2D/3D)</td>
+<td>cell, group</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">areafrac</span></code></td>
+<td>surface area fraction</td>
+<td>group (in 2D)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">volfrac</span></code></td>
+<td>volume fraction</td>
+<td>group (in 3D)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">sizefrac</span></code></td>
+<td>size fraction (surface area/volume fraction in 2D/3D)</td>
+<td>group</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">diameq</span></code></td>
+<td>equivalent diameter <a class="footnote-reference" href="#equivalent-diameter" id="id16">[3]</a></td>
+<td>cell</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">radeq</span></code></td>
+<td>equivalent radius</td>
+<td>cell</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">convexity</span></code></td>
+<td>convexity <a class="footnote-reference" href="#convexity" id="id17">[6]</a></td>
+<td>cell</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">oridisanisoangles</span></code></td>
+<td>orientation distribution anisotropy / principal angles <a class="footnote-reference" href="#jmps2015" id="id18">[11]</a></td>
+<td>cell</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">oridisanisoaxes</span></code></td>
+<td>orientation distribution anisotropy / principal axes <a class="footnote-reference" href="#jmps2015" id="id19">[11]</a></td>
+<td>cell</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">oridisanisofact</span></code></td>
+<td>orientation distribution anisotropy factor <a class="footnote-reference" href="#jmps2015" id="id20">[11]</a></td>
+<td>cell</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">oridisanisodeltas</span></code></td>
+<td>orientation distribution anisotropy / principal delta angles [#deltas]</td>
+<td>cell</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="tessellation-optimization-keys">
+<span id="id21"></span><h2>Tessellation Optimization Keys<a class="headerlink" href="#tessellation-optimization-keys" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="time-keys">
+<span id="id22"></span><h3>Time Keys<a class="headerlink" href="#time-keys" title="Permalink to this headline">¶</a></h3>
+<p>The available keys for option <a class="reference internal" href="neper_t.html#cmdoption-morphooptilogtime"><code class="xref std std-option docutils literal notranslate"><span class="pre">-morphooptilogtime</span></code></a> are provided below. Use <code class="xref c c-data docutils literal notranslate"><span class="pre">iter(&lt;factor&gt;)</span></code>, where <code class="xref c c-data docutils literal notranslate"><span class="pre">factor</span></code> is an integer reduction factor, to log values only at specific iteration numbers.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="72%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">iter</span></code></td>
+<td>iteration number</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">varupdateqty</span></code></td>
+<td>number of updated variables</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">seedupdateqty</span></code></td>
+<td>number of updated seeds</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">seedupdatelist</span></code></td>
+<td>list of updated seeds</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cellupdateqty</span></code></td>
+<td>number of updated cells</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cellupdatelist</span></code></td>
+<td>list of updated cells</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">var</span></code></td>
+<td>time for variable update</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">seed</span></code></td>
+<td>time for seed update</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cell_init</span></code></td>
+<td>time for cell update initialization</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cell_kdtree</span></code></td>
+<td>time for cell update kdtree computation</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cell_shift</span></code></td>
+<td>time for cell update shift computation</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cell_neigh</span></code></td>
+<td>time for cell update neighbor computation</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cell_cell</span></code></td>
+<td>time for cell update cell computation</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cell_other</span></code></td>
+<td>time for cell update others</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cell_total</span></code></td>
+<td>total time for cell update</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">val</span></code></td>
+<td>time for (objective function) value update</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">val_init</span></code></td>
+<td>time for (objective function) value update / initialization</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">val_penalty</span></code></td>
+<td>time for (objective function) value update / penalty computation</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">val_val</span></code></td>
+<td>time for (objective function) value update / value computation</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">val_val_cellval</span></code></td>
+<td>time for (objective function) value update / value computation / cell values</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">val_val_comp</span></code></td>
+<td>time for (objective function) value update / value computation / computation</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">val_comp</span></code></td>
+<td>time for (objective function) value update / computation</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">total</span></code></td>
+<td>total time</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cumtotal</span></code></td>
+<td>cumulative total time</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="variable-keys">
+<span id="id23"></span><h3>Variable Keys<a class="headerlink" href="#variable-keys" title="Permalink to this headline">¶</a></h3>
+<p>The available keys for option <a class="reference internal" href="neper_t.html#cmdoption-morphooptilogvar"><code class="xref std std-option docutils literal notranslate"><span class="pre">-morphooptilogvar</span></code></a> are provided below.  Use <code class="xref c c-data docutils literal notranslate"><span class="pre">iter(&lt;factor&gt;)</span></code>, where <code class="xref c c-data docutils literal notranslate"><span class="pre">factor</span></code> is an integer reduction factor, to log values only at specific iteration numbers.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="33%" />
+<col width="29%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+<td><strong>Apply to</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">iter</span></code></td>
+<td>iteration number</td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">id</span></code></td>
+<td>identifier</td>
+<td>seed</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x coordinate</td>
+<td>seed</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">y</span></code></td>
+<td>y coordinate</td>
+<td>seed</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">z</span></code></td>
+<td>z coordinate</td>
+<td>seed</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">w</span></code></td>
+<td>weight</td>
+<td>seed</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="objective-function-value-keys">
+<span id="id24"></span><h3>Objective Function Value Keys<a class="headerlink" href="#objective-function-value-keys" title="Permalink to this headline">¶</a></h3>
+<p>The available keys for option <a class="reference internal" href="neper_t.html#cmdoption-morphooptilogval"><code class="xref std std-option docutils literal notranslate"><span class="pre">-morphooptilogval</span></code></a> are provided below.  Use <code class="xref c c-data docutils literal notranslate"><span class="pre">iter(&lt;factor&gt;)</span></code>, where <code class="xref c c-data docutils literal notranslate"><span class="pre">factor</span></code> is an integer reduction factor, to log values only at specific iteration numbers.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">iter</span></code></td>
+<td>iteration number</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">val</span></code></td>
+<td>value</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">valmin</span></code></td>
+<td>minimal value</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">val0</span></code></td>
+<td>value, without smoothing</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">valmin0</span></code></td>
+<td>minimal value, without smoothing</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">val(i)</span></code></td>
+<td><img class="math" src="_images/math/afe03a44d38ea5a81affe6de4876cb1102c589fc.png" alt="i"/> th subvalue</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">val0(i)</span></code></td>
+<td><img class="math" src="_images/math/afe03a44d38ea5a81affe6de4876cb1102c589fc.png" alt="i"/> th subvalue, without smoothing</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">eps</span></code></td>
+<td>error on the objective function (see <a class="reference internal" href="neper_t.html#cmdoption-morphooptistop"><code class="xref std std-option docutils literal notranslate"><span class="pre">-morphooptistop</span></code></a>)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">reps</span></code></td>
+<td>relative error on the objective function (see <a class="reference internal" href="neper_t.html#cmdoption-morphooptistop"><code class="xref std std-option docutils literal notranslate"><span class="pre">-morphooptistop</span></code></a>)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">loop</span></code></td>
+<td>optimization loop</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">plateaulength</span></code></td>
+<td>current plateau length <a class="footnote-reference" href="#plateau" id="id25">[13]</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="statistical-distribution-keys">
+<span id="id26"></span><h3>Statistical Distribution Keys<a class="headerlink" href="#statistical-distribution-keys" title="Permalink to this headline">¶</a></h3>
+<p>The available keys for option <a class="reference internal" href="neper_t.html#cmdoption-morphooptilogdis"><code class="xref std std-option docutils literal notranslate"><span class="pre">-morphooptilogdis</span></code></a> are provided below. PDF stands for <em>probability density function</em> and CDF stands for <em>cumulative probability density function</em>.  Use <code class="xref c c-data docutils literal notranslate"><span class="pre">iter(&lt;factor&gt;)</span></code>, where <code class="xref c c-data docutils literal notranslate"><span class="pre">factor</span></code> is a reduction factor, to log values only at specific iteration numbers.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">iter</span></code></td>
+<td>iteration number</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x coordinate</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">tarpdf</span></code></td>
+<td>target PDF</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">tarcdf</span></code></td>
+<td>target CDF</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">curpdf</span></code></td>
+<td>current PDF</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">curcdf</span></code></td>
+<td>current CDF</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">tarpdf0</span></code></td>
+<td>target PDF, not smoothed</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">tarcdf0</span></code></td>
+<td>target CDF, not smoothed</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">curcdf0</span></code></td>
+<td>current CDF, not smoothed</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="raster-tessellation-voxel-keys">
+<span id="id27"></span><h3>Raster Tessellation Voxel Keys<a class="headerlink" href="#raster-tessellation-voxel-keys" title="Permalink to this headline">¶</a></h3>
+<p>The available keys for option <a class="reference internal" href="neper_t.html#cmdoption-morphooptilogtesr"><code class="xref std std-option docutils literal notranslate"><span class="pre">-morphooptilogtesr</span></code></a> are provided below.  Values are written for each voxel used to compute the objective function.  Use <code class="xref c c-data docutils literal notranslate"><span class="pre">iter(&lt;factor&gt;)</span></code>, where <code class="xref c c-data docutils literal notranslate"><span class="pre">factor</span></code> is a reduction factor, to log values only at specific iteration numbers.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="48%" />
+<col width="52%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">iter</span></code></td>
+<td>iteration number</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">id</span></code></td>
+<td>cell identifier</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x coordinate</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">y</span></code></td>
+<td>y coordinate</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">z</span></code></td>
+<td>z coordinate</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">dist</span></code></td>
+<td>distance to the cell</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="orientation-optimization-keys">
+<span id="id28"></span><h2>Orientation Optimization Keys<a class="headerlink" href="#orientation-optimization-keys" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id29">
+<h3>Variable Keys<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<p>The available keys for option <a class="reference internal" href="neper_t.html#cmdoption-orioptilogvar"><code class="xref std std-option docutils literal notranslate"><span class="pre">-orioptilogvar</span></code></a> are provided below.  For all orientation descriptors but <code class="xref c c-data docutils literal notranslate"><span class="pre">quaternion</span></code>, the returned orientation are located in the fundamental region. Use <code class="xref c c-data docutils literal notranslate"><span class="pre">iter(&lt;factor&gt;)</span></code>, where <code class="xref c c-data docutils literal notranslate"><span class="pre">factor</span></code> is an integer reduction factor, to log values only at specific iteration numbers.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="50%" />
+<col width="21%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+<td><strong>Apply to</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">iter</span></code></td>
+<td>iteration number</td>
+<td>n/a</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">id</span></code></td>
+<td>identifier</td>
+<td>seed</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rodrigues</span></code></td>
+<td>Rodrigues vector</td>
+<td>seed</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">euler-bunge</span></code></td>
+<td>Euler angles (Bunge convention)</td>
+<td>seed</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">euler-kocks</span></code></td>
+<td>Euler angles (Kocks convention)</td>
+<td>seed</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">euler-roe</span></code></td>
+<td>Euler angles (Roe convention)</td>
+<td>seed</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rotmat</span></code></td>
+<td>Rotation matrix</td>
+<td>seed</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">axis-angle</span></code></td>
+<td>rotation axis / angle pair</td>
+<td>seed</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">quaternion</span></code></td>
+<td>quaternion</td>
+<td>seed</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="mesh-keys">
+<span id="id30"></span><h2>Mesh Keys<a class="headerlink" href="#mesh-keys" title="Permalink to this headline">¶</a></h2>
+<p>Available keys for a mesh itself are provided below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="48%" />
+<col width="29%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+<td><strong>Apply to</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">eltnb</span></code></td>
+<td>element number</td>
+<td>{0-3}D mesh, cohesive-elt mesh</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">nodenb</span></code></td>
+<td>node number</td>
+<td>{0-3}D mesh</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">partnb</span></code></td>
+<td>partition number</td>
+<td>highest-dimension mesh</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x coordinate</td>
+<td>{0-3}D mesh</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">y</span></code></td>
+<td>y coordinate</td>
+<td>{0-3}D mesh</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">z</span></code></td>
+<td>z coordinate</td>
+<td>{0-3}D mesh</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">coo</span></code></td>
+<td>x, y and z coordinates</td>
+<td>{0-3}D mesh</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">length</span></code></td>
+<td>length</td>
+<td>1D mesh</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">area</span></code></td>
+<td>surface area</td>
+<td>2D mesh</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vol</span></code></td>
+<td>volume</td>
+<td>3D mesh</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">size</span></code></td>
+<td>size (length/area/volume in 1D/2D/3D)</td>
+<td>1D mesh, 2D mesh, 3D mesh</td>
+</tr>
+</tbody>
+</table>
+<p>Available keys for mesh node, elements and element sets (of all dimensions) and points are provided below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="40%" />
+<col width="36%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+<td><strong>Apply to</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">id</span></code></td>
+<td>identifier</td>
+<td>node, {0-3}D elt, {0-3}D elset</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x coordinate</td>
+<td>node, {0-3}D elt, {0-3}D elset</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">y</span></code></td>
+<td>y coordinate</td>
+<td>node, {0-3}D elt, {0-3}D elset</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">z</span></code></td>
+<td>z coordinate</td>
+<td>node, {0-3}D elt, {0-3}D elset</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">coo</span></code></td>
+<td>x, y and z coordinates</td>
+<td>node, {0-3}D elt, {0-3}D elset</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">dim</span></code></td>
+<td>dimension (= lowest parent elt dimension)</td>
+<td>node</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">elset0d</span></code></td>
+<td>0D elset</td>
+<td>0D elt</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">elset1d</span></code></td>
+<td>1D elset</td>
+<td>1D elt</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">elset2d</span></code></td>
+<td>2D elset</td>
+<td>2D elt</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">elset3d</span></code></td>
+<td>3D elset</td>
+<td>3D elt</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">part</span></code></td>
+<td>partition</td>
+<td>{0-3}D elt, node</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">group</span></code></td>
+<td>group</td>
+<td>{0-3}D elt, {0-3}D elset</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cyl</span></code></td>
+<td>polygonize the circular part of a cylindrical domain</td>
+<td>1D elt, 1D elset</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">vol</span></code></td>
+<td>volume</td>
+<td>3D elt, 3D elset</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">area</span></code></td>
+<td>surface area</td>
+<td>2D elt</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">diameq</span></code></td>
+<td>equivalent diameter</td>
+<td>{2,3}D elt, {2,3}D elset</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">radeq</span></code></td>
+<td>equivalent radius</td>
+<td>{2,3}D elt, {2,3}D elset</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">length</span></code></td>
+<td>average edge length</td>
+<td>{0-3}D elt, 1D elset</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lengths</span></code></td>
+<td>edge lengths</td>
+<td>2D elt, 3D elt</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">elsetvol</span></code></td>
+<td>elset volume</td>
+<td>3D elt</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">elsetarea</span></code></td>
+<td>elset area</td>
+<td>2D elt</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">elsetlength</span></code></td>
+<td>elset length</td>
+<td>1D elt</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rr</span></code></td>
+<td>radius ratio</td>
+<td>3D elt</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rrav</span></code></td>
+<td>average radius ratio</td>
+<td>3D elset</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rrmin</span></code></td>
+<td>min radius ratio</td>
+<td>3D elset</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rrmax</span></code></td>
+<td>max radius ratio</td>
+<td>3D elset</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">Osize</span></code></td>
+<td>Osize</td>
+<td>3D elset</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">eltnb</span></code></td>
+<td>number of elements</td>
+<td>{0-3}D elset</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">true</span></code></td>
+<td>true level</td>
+<td>{0-3}D elt, {0-3}D elset</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">body</span></code></td>
+<td>body level</td>
+<td>{0-3}D elt, {0-3}D elset</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">domtype</span></code></td>
+<td>type of domain <a class="footnote-reference" href="#domtype" id="id31">[14]</a></td>
+<td>{0-2}D elt, {0-2}D elset</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshp</span></code></td>
+<td>coordinates of the closest point of the 2D mesh</td>
+<td>node, 3D elt</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshd</span></code></td>
+<td>distance to <code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshp</span></code></td>
+<td>node, 3D elt</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshv</span></code></td>
+<td>vector to <code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshp</span></code></td>
+<td>node, 3D elt</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshn</span></code></td>
+<td>outgoing normal vector of the 2D mesh at <code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshp</span></code></td>
+<td>node, 3D elt</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">per</span></code></td>
+<td>periodic (1 if periodic, 0 otherwise)</td>
+<td>{0,1}D elt, 2D elt (in 3D), {0,1}D elset, 2D elset (in 3D)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">col_rodrigues</span></code></td>
+<td>color according to the Rodrigues vector convention <a class="footnote-reference" href="#col-rodrigues" id="id32">[15]</a></td>
+<td>node</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">col_stdtriangle</span></code></td>
+<td>color according to the IPF convention <a class="footnote-reference" href="#col-stdtriangle" id="id33">[16]</a></td>
+<td>node</td>
+</tr>
+</tbody>
+</table>
+<p>Variables beginning with <code class="xref c c-data docutils literal notranslate"><span class="pre">2dmesh</span></code> are only available for statistics (options beginning with <code class="xref c c-data docutils literal notranslate"><span class="pre">-stat</span></code> of module -M); for elements, they apply to the centroids.</p>
+</div>
+<div class="section" id="point-keys">
+<span id="id34"></span><h2>Point Keys<a class="headerlink" href="#point-keys" title="Permalink to this headline">¶</a></h2>
+<p>Available keys for points are provided below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="44%" />
+<col width="17%" />
+<col width="17%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+<td><strong>Apply to</strong></td>
+<td><strong>Require</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">id</span></code></td>
+<td>identifier</td>
+<td>point</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">x</span></code></td>
+<td>x coordinate</td>
+<td>point</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">y</span></code></td>
+<td>y coordinate</td>
+<td>point</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">z</span></code></td>
+<td>z coordinate</td>
+<td>point</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cell</span></code></td>
+<td>cell</td>
+<td>point</td>
+<td>tessellation</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">elt</span></code></td>
+<td>containing element</td>
+<td>point</td>
+<td>mesh</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">elset</span></code></td>
+<td>containing elset</td>
+<td>point</td>
+<td>mesh</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshp</span></code></td>
+<td>coordinates of the closest point of the 2D mesh</td>
+<td>point</td>
+<td>3D mesh</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshd</span></code></td>
+<td>distance to <code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshp</span></code></td>
+<td>point</td>
+<td>3D mesh</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshv</span></code></td>
+<td>vector to <code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshp</span></code></td>
+<td>point</td>
+<td>3D mesh</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshn</span></code></td>
+<td>outgoing normal vector of the 2D mesh at <code class="xref c c-data docutils literal notranslate"><span class="pre">2dmeshp</span></code></td>
+<td>point</td>
+<td>3D mesh</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="simulation-results">
+<span id="id35"></span><h2>Simulation Results<a class="headerlink" href="#simulation-results" title="Permalink to this headline">¶</a></h2>
+<p>A result of a <a class="reference internal" href="fileformat.html#simulation-directory"><span class="std std-ref">simulation directory</span></a> can be invoked simply from its name.  A component of a vectorial or tensorial result can be invoked by prefixing the component to the name, as in <code class="xref c c-data docutils literal notranslate"><span class="pre">coo1</span></code>, <code class="xref c c-data docutils literal notranslate"><span class="pre">stress11</span></code>, etc.  For a symmetrical tensor (for which only 6 values are stored), <code class="xref c c-data docutils literal notranslate"><span class="pre">t</span></code>, both <code class="xref c c-data docutils literal notranslate"><span class="pre">t&lt;i&gt;&lt;j&gt;</span></code> and <code class="xref c c-data docutils literal notranslate"><span class="pre">t&lt;j&gt;&lt;i&gt;</span></code> are valid.  The type of a result of the simulation directory is determined automatically. Elset and mesh results can be obtained from the element results, by averaging or other statistical treatments.</p>
+<p>Available results / keys and concerning orientation distributions are provided below.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="21%" />
+<col width="50%" />
+<col width="29%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Descriptor</strong></td>
+<td><strong>Apply to</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">ori</span></code></td>
+<td>average orientation</td>
+<td>elset, mesh</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">oridisanisoangles</span></code></td>
+<td>orientation distribution principal angles</td>
+<td>elset, mesh</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">oridisanisoaxes</span></code></td>
+<td>orientation distribution principal axes</td>
+<td>elset, mesh</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">oridisanisofact</span></code></td>
+<td>orientation distribution factor</td>
+<td>elset, mesh</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">odf(sigma=value)</span></code></td>
+<td>ODF defined at elements, with sigma the standard deviation of the kernel (optional)</td>
+<td>mesh</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">odfn(sigma=value)</span></code></td>
+<td>ODF defined at nodes, with sigma the standard deviation of the kernel (optional)</td>
+<td>mesh</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="rotations-and-orientations">
+<span id="id36"></span><h2>Rotations and Orientations<a class="headerlink" href="#rotations-and-orientations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="rotation-and-orientation-descriptors">
+<span id="id37"></span><h3>Rotation and Orientation Descriptors<a class="headerlink" href="#rotation-and-orientation-descriptors" title="Permalink to this headline">¶</a></h3>
+<p>Rotations and orientations can be described using the following
+descriptors.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="42%" />
+<col width="31%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Key</td>
+<td>Descriptor</td>
+<td>Number of parameters</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rodrigues</span></code></td>
+<td>Rodrigues vector</td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">euler-bunge</span></code></td>
+<td>Euler angles (Bunge convention)</td>
+<td>3</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">euler-kocks</span></code></td>
+<td>Euler angles (Kocks convention)</td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">euler-roe</span></code></td>
+<td>Euler angles (Roe convention)</td>
+<td>3</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rotmat</span></code></td>
+<td>rotation matrix</td>
+<td>9</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">axis-angle</span></code></td>
+<td>rotation axis / angle pair</td>
+<td>4</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">quaternion</span></code></td>
+<td>quaternion</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>Some options can take orientations as argument, in which case the orientation must be expressed as <code class="xref c c-data docutils literal notranslate"><span class="pre">descriptor(&lt;parameter1&gt;,&lt;parameters2&gt;,...)</span></code>. An example is <code class="xref c c-data docutils literal notranslate"><span class="pre">rodrigues(0.1,0.2,0.3)</span></code>.</p>
+</div>
+<div class="section" id="ideal-orientations">
+<span id="id38"></span><h3>Ideal Orientations<a class="headerlink" href="#ideal-orientations" title="Permalink to this headline">¶</a></h3>
+<p>Keys are available for ideal orientations (lowercased is accepted):</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>Miller indices</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">Cube</span></code></td>
+<td><img class="math" src="_images/math/4cebf1605c39175ce0980475c8b952d2b87b6f4d.png" alt="(0\,0\,1)[1\,0\,0]"/></td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">Goss</span></code></td>
+<td><img class="math" src="_images/math/4484fb8083a2b4e559b057997be595cf4ca4e2d0.png" alt="(0\,1\,1)[1\,0\,0]"/></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">U</span></code></td>
+<td><img class="math" src="_images/math/cfd44f261e041b7739b5542f202e17daf3bcad8c.png" alt="(1\,0\,1)[\overline{1}\,0\,1]"/></td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">45NDCube</span></code></td>
+<td><img class="math" src="_images/math/5cdc6c421eb73eec980a9a2ba15e20932cb54aa2.png" alt="(0\,0\,1)[1\,\overline{1}\,0]"/></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">S1</span></code></td>
+<td><img class="math" src="_images/math/784e2042f24d04d470afaae1b8caf7d76d15eded.png" alt="(1\,2\,3)[6\,3\,\overline{4}]"/></td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">S2</span></code></td>
+<td><img class="math" src="_images/math/e7b8f76198baa0bd44b809237a54a09951950a78.png" alt="(\overline{1}\,2\,3)[6\,\overline{3}\,4]"/></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">S3</span></code></td>
+<td><img class="math" src="_images/math/0a7f0e72c944039828adf35740077cb4fa189034.png" alt="(1\,\overline{2}\,3)[6\,\overline{3}\,\overline{4}]"/></td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">S4</span></code></td>
+<td><img class="math" src="_images/math/89aef55f814ee940996196037d68ce1349c6e4d1.png" alt="(\overline{1}\,\overline{2}\,3)[6\,3\,4]"/></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">Brass1</span></code></td>
+<td><img class="math" src="_images/math/8a1e7c00cf08066dd7ea75b57c70153004ef4e41.png" alt="(1\,1\,0)[1\,\overline{1}\,2]"/></td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">Brass2</span></code></td>
+<td><img class="math" src="_images/math/e54974fdad6b49e4a9cb3810381f68c237a63deb.png" alt="(\overline{1}\,1\,0)[1\,1\,\overline{2}]"/></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">Copper1</span></code></td>
+<td><img class="math" src="_images/math/82654dcad00db2659595991f9345deb1747059e9.png" alt="(1\,1\,2)[1\,1\,\overline{1}]"/></td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">Copper2</span></code></td>
+<td><img class="math" src="_images/math/fd4e19bec2ef1766e9b027696524349fbe0f55bd.png" alt="(\overline{1}\,1\,2)[1\,\overline{1}\,1]"/></td>
+</tr>
+</tbody>
+</table>
+<p>When loading orientations from an external file, use <code class="xref c c-data docutils literal notranslate"><span class="pre">file(&lt;file_name&gt;[,des=&lt;descriptor&gt;])</span></code> where the orientation descriptor is among those listed above and is <code class="xref c c-data docutils literal notranslate"><span class="pre">rodrigues:active</span></code> by default.</p>
+</div>
+</div>
+<div class="section" id="crystal-symmetries">
+<span id="id39"></span><h2>Crystal Symmetries<a class="headerlink" href="#crystal-symmetries" title="Permalink to this headline">¶</a></h2>
+<p>Crystal symmetries can be described using the following descriptors.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="48%" />
+<col width="26%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Key</td>
+<td>Descriptor</td>
+<td>Number of operators</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">triclinic</span></code></td>
+<td>triclinic (Laue group <img class="math" src="_images/math/8c37dbcbbd0b389d1cf21ea9f57a471a690fa4b0.png" alt="\overline{1}"/>)</td>
+<td>24</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cubic</span></code></td>
+<td>cubic</td>
+<td>24</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">hexagonal</span></code></td>
+<td>hexagonal</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">-1</span></code></td>
+<td>Laue group <img class="math" src="_images/math/8c37dbcbbd0b389d1cf21ea9f57a471a690fa4b0.png" alt="\overline{1}"/></td>
+<td>1</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">2/m</span></code></td>
+<td>Laue group <img class="math" src="_images/math/945a7010bcf7fd786d09cd002937449e70fd0aa8.png" alt="2/m"/></td>
+<td>2</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mmm</span></code></td>
+<td>Laue group <img class="math" src="_images/math/2ae1fb7d7f003c5b343305ee01c2f06db648a95d.png" alt="mmm"/></td>
+<td>4</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">4/m</span></code></td>
+<td>Laue group <img class="math" src="_images/math/29d08329174c0d11e69e6a284cbe559123000e62.png" alt="4/m"/></td>
+<td>4</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">4/mmm</span></code></td>
+<td>Laue group <img class="math" src="_images/math/3736e1d64b423da95c79e1a5333aaddfaf32c115.png" alt="4/mmm"/></td>
+<td>8</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">-3</span></code></td>
+<td>Laue group <img class="math" src="_images/math/717b8097ae6026b4d6a0178aca7a20921490221f.png" alt="\overline{3}"/></td>
+<td>3</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">-3m</span></code></td>
+<td>Laue group <img class="math" src="_images/math/3f746540046561651d7d50f28639742403cdb448.png" alt="\overline{3}m"/></td>
+<td>6</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">6/m</span></code></td>
+<td>Laue group <img class="math" src="_images/math/85d0614c6fca69b4fec4a67f7479b6c6857eaeb4.png" alt="6/m"/></td>
+<td>6</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">6/mmm</span></code></td>
+<td>Laue group <img class="math" src="_images/math/7805964e413a3b0621274acb34ed0eed7986db6e.png" alt="6/mmm"/></td>
+<td>12</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">m-3</span></code></td>
+<td>Laue group <img class="math" src="_images/math/e4e88c178f5477f8d3e58bac7c4a25fa182f4e43.png" alt="m\overline{3}"/></td>
+<td>12</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">m-3m</span></code></td>
+<td>Laue group <img class="math" src="_images/math/ed3bc6d269710310eff073a08b305343338ba7ea.png" alt="m\overline{3}m"/></td>
+<td>24</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="colors-and-color-maps">
+<span id="id40"></span><h2>Colors and Color Maps<a class="headerlink" href="#colors-and-color-maps" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="colors">
+<h3>Colors<a class="headerlink" href="#colors" title="Permalink to this headline">¶</a></h3>
+<p>The available colors are provided below, with their corresponding RGB channel values (ranging from 0 to 255). Any other color can be defined from the RGB channel values, under format <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;R_value&gt;:&lt;G_value&gt;:&lt;B_value&gt;</span></code>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="60%" />
+<col width="40%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Key</strong></td>
+<td><strong>RGB value</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">black</span></code></td>
+<td>(0, 0, 0)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">red</span></code></td>
+<td>(255, 0, 0)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">green</span></code></td>
+<td>(0, 255, 0)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">blue</span></code></td>
+<td>(0, 0, 255)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">yellow</span></code></td>
+<td>(255, 255, 0)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">magenta</span></code></td>
+<td>(255, 0, 255)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cyan</span></code></td>
+<td>(0, 255, 255)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">white</span></code></td>
+<td>(255, 255, 255)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">maroon</span></code></td>
+<td>(128, 0, 0)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">navy</span></code></td>
+<td>(0, 0, 128)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">chartreuse</span></code></td>
+<td>(127, 255, 0)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">springgreen</span></code></td>
+<td>(0, 255, 127)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">olive</span></code></td>
+<td>(128, 128, 0)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">purple</span></code></td>
+<td>(128, 0, 128)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">teal</span></code></td>
+<td>(0, 128, 128)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">gray</span></code></td>
+<td>(128, 128, 128)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">deepskyblue</span></code></td>
+<td>(0, 191, 255)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lawngreen</span></code></td>
+<td>(124, 252, 0)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkgray</span></code></td>
+<td>(64, 64, 64)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">orangered</span></code></td>
+<td>(255, 69, 0)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">silver</span></code></td>
+<td>(192, 192, 192)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">snow</span></code></td>
+<td>(255, 250, 250)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkred</span></code></td>
+<td>(139, 0, 0)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkblue</span></code></td>
+<td>(0, 0, 139)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkorange</span></code></td>
+<td>(255, 140, 0)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">azure</span></code></td>
+<td>(240, 255, 255)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">ghostwhite</span></code></td>
+<td>(248, 248, 255)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">ivory</span></code></td>
+<td>(255, 255, 240)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mediumblue</span></code></td>
+<td>(0, 0, 205)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightpink</span></code></td>
+<td>(255, 182, 193)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mintcream</span></code></td>
+<td>(245, 255, 250)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">indigo</span></code></td>
+<td>(75, 0, 130)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightcoral</span></code></td>
+<td>(240, 128, 128)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">pink</span></code></td>
+<td>(255, 192, 203)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">coral</span></code></td>
+<td>(255, 127, 80)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">salmon</span></code></td>
+<td>(250, 128, 114)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">floralwhite</span></code></td>
+<td>(255, 250, 240)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">aquamarine</span></code></td>
+<td>(127, 255, 212)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lemonchiffon</span></code></td>
+<td>(255, 250, 205)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">gold</span></code></td>
+<td>(255, 215, 0)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkgreen</span></code></td>
+<td>(0, 100, 0)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">orange</span></code></td>
+<td>(255, 165, 0)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">aliceblue</span></code></td>
+<td>(240, 248, 255)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightcyan</span></code></td>
+<td>(224, 255, 255)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightyellow</span></code></td>
+<td>(255, 255, 224)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkmagenta</span></code></td>
+<td>(139, 0, 139)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkcyan</span></code></td>
+<td>(0, 139, 139)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">peru</span></code></td>
+<td>(205, 133, 63)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">steelblue</span></code></td>
+<td>(70, 130, 180)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lavenderblush</span></code></td>
+<td>(255, 240, 245)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">seashell</span></code></td>
+<td>(255, 245, 238)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mediumspringgreen</span></code></td>
+<td>(0, 250, 154)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkslateblue</span></code></td>
+<td>(72, 61, 139)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkgoldenrod</span></code></td>
+<td>(184, 134, 11)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightsalmon</span></code></td>
+<td>(255, 160, 122)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">bisque</span></code></td>
+<td>(255, 228, 196)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightskyblue</span></code></td>
+<td>(135, 206, 250)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightgoldenrodyellow</span></code></td>
+<td>(250, 250, 210)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">honeydew</span></code></td>
+<td>(240, 255, 240)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cornsilk</span></code></td>
+<td>(255, 248, 220)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">peachpuff</span></code></td>
+<td>(255, 218, 185)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">whitesmoke</span></code></td>
+<td>(245, 245, 245)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">tomato</span></code></td>
+<td>(255, 99, 71)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">slategray</span></code></td>
+<td>(112, 128, 144)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">hotpink</span></code></td>
+<td>(255, 105, 180)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">oldlace</span></code></td>
+<td>(253, 245, 230)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">blanchedalmond</span></code></td>
+<td>(255, 235, 205)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkkhaki</span></code></td>
+<td>(189, 183, 107)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">moccasin</span></code></td>
+<td>(255, 228, 181)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkturquoise</span></code></td>
+<td>(0, 206, 209)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mediumseagreen</span></code></td>
+<td>(60, 179, 113)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mediumvioletred</span></code></td>
+<td>(199, 21, 133)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">violet</span></code></td>
+<td>(238, 130, 238)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">greenyellow</span></code></td>
+<td>(173, 255, 47)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">papayawhip</span></code></td>
+<td>(255, 239, 213)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkseagreen</span></code></td>
+<td>(143, 188, 143)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">rosybrown</span></code></td>
+<td>(188, 143, 143)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">deeppink</span></code></td>
+<td>(255, 20, 147)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">saddlebrown</span></code></td>
+<td>(139, 69, 19)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkviolet</span></code></td>
+<td>(148, 0, 211)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">dodgerblue</span></code></td>
+<td>(30, 144, 255)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightslategray</span></code></td>
+<td>(119, 136, 153)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">burlywood</span></code></td>
+<td>(222, 184, 135)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">navajowhite</span></code></td>
+<td>(255, 222, 173)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">linen</span></code></td>
+<td>(250, 240, 230)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mediumslateblue</span></code></td>
+<td>(123, 104, 238)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">turquoise</span></code></td>
+<td>(64, 224, 208)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">skyblue</span></code></td>
+<td>(135, 206, 235)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mediumturquoise</span></code></td>
+<td>(72, 209, 204)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">beige</span></code></td>
+<td>(245, 245, 220)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mistyrose</span></code></td>
+<td>(255, 228, 225)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">tan</span></code></td>
+<td>(210, 180, 140)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">antiquewhite</span></code></td>
+<td>(250, 235, 215)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">thistle</span></code></td>
+<td>(216, 191, 216)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">limegreen</span></code></td>
+<td>(50, 205, 50)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darksalmon</span></code></td>
+<td>(233, 150, 122)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightsteelblue</span></code></td>
+<td>(176, 196, 222)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">royalblue</span></code></td>
+<td>(65, 105, 225)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">palegreen</span></code></td>
+<td>(152, 251, 152)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">crimson</span></code></td>
+<td>(220, 20, 60)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">wheat</span></code></td>
+<td>(245, 222, 179)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mediumorchid</span></code></td>
+<td>(186, 85, 211)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lavender</span></code></td>
+<td>(230, 230, 250)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">khaki</span></code></td>
+<td>(240, 230, 140)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightgreen</span></code></td>
+<td>(144, 238, 144)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">paleturquoise</span></code></td>
+<td>(175, 238, 238)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkslategray</span></code></td>
+<td>(47, 79, 79)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkorchid</span></code></td>
+<td>(153, 50, 204)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">seagreen</span></code></td>
+<td>(46, 139, 87)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">yellowgreen</span></code></td>
+<td>(154, 205, 50)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">blueviolet</span></code></td>
+<td>(138, 43, 226)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">palevioletred</span></code></td>
+<td>(219, 112, 147)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">olivedrab</span></code></td>
+<td>(107, 142, 35)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mediumpurple</span></code></td>
+<td>(147, 112, 219)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">sandybrown</span></code></td>
+<td>(244, 164, 96)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">darkolivegreen</span></code></td>
+<td>(85, 107, 47)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">mediumaquamarine</span></code></td>
+<td>(102, 205, 170)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">slateblue</span></code></td>
+<td>(106, 90, 205)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">palegoldenrod</span></code></td>
+<td>(238, 232, 170)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">forestgreen</span></code></td>
+<td>(34, 139, 34)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">midnightblue</span></code></td>
+<td>(25, 25, 112)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightseagreen</span></code></td>
+<td>(32, 178, 170)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightgray</span></code></td>
+<td>(211, 211, 211)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">orchid</span></code></td>
+<td>(218, 112, 214)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cornflowerblue</span></code></td>
+<td>(100, 149, 237)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">sienna</span></code></td>
+<td>(160, 82, 45)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">firebrick</span></code></td>
+<td>(178, 34, 34)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">powderblue</span></code></td>
+<td>(176, 224, 230)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">indianred</span></code></td>
+<td>(205, 92, 92)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">dimgray</span></code></td>
+<td>(105, 105, 105)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">lightblue</span></code></td>
+<td>(173, 216, 230)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">chocolate</span></code></td>
+<td>(210, 105, 30)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">brown</span></code></td>
+<td>(165, 42, 42)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">goldenrod</span></code></td>
+<td>(218, 165, 32)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">gainsboro</span></code></td>
+<td>(220, 220, 220)</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">plum</span></code></td>
+<td>(221, 160, 221)</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cadetblue</span></code></td>
+<td>(95, 158, 160)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="color-maps">
+<h3>Color Maps<a class="headerlink" href="#color-maps" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="color-map-for-integer-values">
+<h3>Color Map for Integer Values<a class="headerlink" href="#color-map-for-integer-values" title="Permalink to this headline">¶</a></h3>
+<p>The <em>color map</em> or <em>palette</em> used to represent integer values is defined from the above color list, by excluding colors of brightness below 0.2 and above 0.8.  The brightness is defined as the average of the channel values divided by 255.  The resulting list of colors is: (1) <code class="xref c c-data docutils literal notranslate"><span class="pre">red</span></code>, (2) <code class="xref c c-data docutils literal notranslate"><span class="pre">green</span></code>, (3) <code class="xref c c-data docutils literal notranslate"><span class="pre">blue</span></code>, (4) <code class="xref c c-data docutils literal notranslate"><span class="pre">yellow</span></code>, (5) <code class="xref c c-data docutils literal notranslate"><span class="pre">magenta</span></code>, (6) <code class="xref c c-data docutils literal notranslate"><span class="pre">cyan</span></code>, (7) <code class="xref c c-data docutils literal notranslate"><span class="pre">chartreuse</span></code>, (8) <code class="xref c c-data docutils literal notranslate"><span class="pre">springgreen</span></code>, (9) <code class="xref c c-data docutils literal notranslate"><span class="pre">olive</span></code>, (10) <code class="xref c c-data docutils literal notranslate"><span class="pre">purple</span></code>, (11) <code class="xref c c-data docutils literal notranslate"><span class="pre">teal</span></code>, (12) <code class="xref c c-data docutils literal notranslate"><span class="pre">gray</span></code>, (13) <code class="xref c c-data docutils literal notranslate"><span class="pre">deepskyblue</span></code>, (14) <code class="xref c c-data docutils literal notranslate"><span class="pre">lawngreen</span></code>, (15) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkgray</span></code>, (16) <code class="xref c c-data docutils literal notranslate"><span class="pre">orangered</span></code>, (17) <code class="xref c c-data docutils literal notranslate"><span class="pre">silver</span></code>, (18) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkorange</span></code>, (19) <code class="xref c c-data docutils literal notranslate"><span class="pre">mediumblue</span></code>, (20) <code class="xref c c-data docutils literal notranslate"><span class="pre">indigo</span></code>, (21) <code class="xref c c-data docutils literal notranslate"><span class="pre">lightcoral</span></code>, (22) <code class="xref c c-data docutils literal notranslate"><span class="pre">coral</span></code>, (23) <code class="xref c c-data docutils literal notranslate"><span class="pre">salmon</span></code>, (24) <code class="xref c c-data docutils literal notranslate"><span class="pre">aquamarine</span></code>, (25) <code class="xref c c-data docutils literal notranslate"><span class="pre">gold</span></code>, (26) <code class="xref c c-data docutils literal notranslate"><span class="pre">orange</span></code>, (27) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkmagenta</span></code>, (28) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkcyan</span></code>, (29) <code class="xref c c-data docutils literal notranslate"><span class="pre">peru</span></code>, (30) <code class="xref c c-data docutils literal notranslate"><span class="pre">steelblue</span></code>, (31) <code class="xref c c-data docutils literal notranslate"><span class="pre">mediumspringgreen</span></code>, (32) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkslateblue</span></code>, (33) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkgoldenrod</span></code>, (34) <code class="xref c c-data docutils literal notranslate"><span class="pre">lightsalmon</span></code>, (35) <code class="xref c c-data docutils literal notranslate"><span class="pre">lightskyblue</span></code>, (36) <code class="xref c c-data docutils literal notranslate"><span class="pre">tomato</span></code>, (37) <code class="xref c c-data docutils literal notranslate"><span class="pre">slategray</span></code>, (38) <code class="xref c c-data docutils literal notranslate"><span class="pre">hotpink</span></code>, (39) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkkhaki</span></code>, (40) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkturquoise</span></code>, (41) <code class="xref c c-data docutils literal notranslate"><span class="pre">mediumseagreen</span></code>, (42) <code class="xref c c-data docutils literal notranslate"><span class="pre">mediumvioletred</span></code>, (43) <code class="xref c c-data docutils literal notranslate"><span class="pre">violet</span></code>, (44) <code class="xref c c-data docutils literal notranslate"><span class="pre">greenyellow</span></code>, (45) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkseagreen</span></code>, (46) <code class="xref c c-data docutils literal notranslate"><span class="pre">rosybrown</span></code>, (47) <code class="xref c c-data docutils literal notranslate"><span class="pre">deeppink</span></code>, (48) <code class="xref c c-data docutils literal notranslate"><span class="pre">saddlebrown</span></code>, (49) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkviolet</span></code>, (50) <code class="xref c c-data docutils literal notranslate"><span class="pre">dodgerblue</span></code>, (51) <code class="xref c c-data docutils literal notranslate"><span class="pre">lightslategray</span></code>, (52) <code class="xref c c-data docutils literal notranslate"><span class="pre">burlywood</span></code>, (53) <code class="xref c c-data docutils literal notranslate"><span class="pre">mediumslateblue</span></code>, (54) <code class="xref c c-data docutils literal notranslate"><span class="pre">turquoise</span></code>, (55) <code class="xref c c-data docutils literal notranslate"><span class="pre">skyblue</span></code>, (56) <code class="xref c c-data docutils literal notranslate"><span class="pre">mediumturquoise</span></code>, (57) <code class="xref c c-data docutils literal notranslate"><span class="pre">tan</span></code>, (58) <code class="xref c c-data docutils literal notranslate"><span class="pre">limegreen</span></code>, (59) <code class="xref c c-data docutils literal notranslate"><span class="pre">darksalmon</span></code>, (60) <code class="xref c c-data docutils literal notranslate"><span class="pre">lightsteelblue</span></code>, (61) <code class="xref c c-data docutils literal notranslate"><span class="pre">royalblue</span></code>, (62) <code class="xref c c-data docutils literal notranslate"><span class="pre">palegreen</span></code>, (63) <code class="xref c c-data docutils literal notranslate"><span class="pre">crimson</span></code>, (64) <code class="xref c c-data docutils literal notranslate"><span class="pre">mediumorchid</span></code>, (65) <code class="xref c c-data docutils literal notranslate"><span class="pre">khaki</span></code>, (66) <code class="xref c c-data docutils literal notranslate"><span class="pre">lightgreen</span></code>, (67) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkslategray</span></code>, (68) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkorchid</span></code>, (69) <code class="xref c c-data docutils literal notranslate"><span class="pre">seagreen</span></code>, (70) <code class="xref c c-data docutils literal notranslate"><span class="pre">yellowgreen</span></code>, (71) <code class="xref c c-data docutils literal notranslate"><span class="pre">blueviolet</span></code>, (72) <code class="xref c c-data docutils literal notranslate"><span class="pre">palevioletred</span></code>, (73) <code class="xref c c-data docutils literal notranslate"><span class="pre">olivedrab</span></code>, (74) <code class="xref c c-data docutils literal notranslate"><span class="pre">mediumpurple</span></code>, (75) <code class="xref c c-data docutils literal notranslate"><span class="pre">sandybrown</span></code>, (76) <code class="xref c c-data docutils literal notranslate"><span class="pre">darkolivegreen</span></code>, (77) <code class="xref c c-data docutils literal notranslate"><span class="pre">mediumaquamarine</span></code>, (78) <code class="xref c c-data docutils literal notranslate"><span class="pre">slateblue</span></code>, (79) <code class="xref c c-data docutils literal notranslate"><span class="pre">forestgreen</span></code>, (80) <code class="xref c c-data docutils literal notranslate"><span class="pre">midnightblue</span></code>, (81) <code class="xref c c-data docutils literal notranslate"><span class="pre">lightseagreen</span></code>, (82) <code class="xref c c-data docutils literal notranslate"><span class="pre">orchid</span></code>, (83) <code class="xref c c-data docutils literal notranslate"><span class="pre">cornflowerblue</span></code>, (84) <code class="xref c c-data docutils literal notranslate"><span class="pre">sienna</span></code>, (85) <code class="xref c c-data docutils literal notranslate"><span class="pre">firebrick</span></code>, (86) <code class="xref c c-data docutils literal notranslate"><span class="pre">indianred</span></code>, (87) <code class="xref c c-data docutils literal notranslate"><span class="pre">dimgray</span></code>, (88) <code class="xref c c-data docutils literal notranslate"><span class="pre">chocolate</span></code>, (89) <code class="xref c c-data docutils literal notranslate"><span class="pre">brown</span></code>, (90) <code class="xref c c-data docutils literal notranslate"><span class="pre">goldenrod</span></code>, (91) <code class="xref c c-data docutils literal notranslate"><span class="pre">plum</span></code> and (92) <code class="xref c c-data docutils literal notranslate"><span class="pre">cadetblue</span></code>.</p>
+</div>
+<div class="section" id="color-maps-for-real-value">
+<h3>Color Maps for Real Value<a class="headerlink" href="#color-maps-for-real-value" title="Permalink to this headline">¶</a></h3>
+<p>The color <em>map</em> used to represent real values is smooth and obtained by interpolation between nominal colors. <a class="reference external" href="https://github.com/yuki-koyama/tinycolormap">Tinycolormap</a> is used to generate standard color maps:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="43%" />
+<col width="33%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><strong>Python-style</strong></td>
+<td><strong>Matlab-style</strong></td>
+<td><strong>GitHub-style</strong></td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">magma</span></code></td>
+<td><code class="xref c c-data docutils literal notranslate"><span class="pre">parula</span></code></td>
+<td><code class="xref c c-data docutils literal notranslate"><span class="pre">github</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">inferno</span></code></td>
+<td><code class="xref c c-data docutils literal notranslate"><span class="pre">heat</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">plasma</span></code></td>
+<td><code class="xref c c-data docutils literal notranslate"><span class="pre">hot</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">viridis</span></code></td>
+<td><code class="xref c c-data docutils literal notranslate"><span class="pre">jet</span></code></td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td><code class="xref c c-data docutils literal notranslate"><span class="pre">cividis</span></code></td>
+<td><code class="xref c c-data docutils literal notranslate"><span class="pre">gray</span></code></td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<p>and <code class="xref c c-data docutils literal notranslate"><span class="pre">viridis</span></code> is the default.  See <a class="reference external" href="https://github.com/yuki-koyama/tinycolormap">Tinycolormap</a>  for illustrations.</p>
+<p>Alternatively, any series of colors can be used to define a color map.  Neper’s legacy color map (version <img class="math" src="_images/math/a6b8abc2ef1347475ad263a7350ce3920d5bbd9a.png" alt="&lt; 4"/>) is <code class="xref c c-data docutils literal notranslate"><span class="pre">blue,cyan,yellow,green</span></code> and can be obtained using <code class="xref c c-data docutils literal notranslate"><span class="pre">legacy</span></code>.</p>
+<table class="docutils footnote" frame="void" id="muparser-doc" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[1]</a></td><td>Taken from the <code class="xref c c-data docutils literal notranslate"><span class="pre">muparser</span></code> <a class="reference external" href="http://beltoforion.de/article.php?a=muparser">documentation</a></td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="multiscale-face" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id6">[2]</a></td><td>Applies only to a 3D tessellation and relevant for multiscale tessellations.  The scale of a face is the scale at which the face was created, and it ranges from 0 (for domain faces) to the number of scales of the tessellation (for the last created faces).</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="equivalent-diameter" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[3]</td><td><em>(<a class="fn-backref" href="#id7">1</a>, <a class="fn-backref" href="#id16">2</a>)</em> Equivalent diameter = diameter of the circle of equivalent area/volume in 2D/3D</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="sphericity" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id8">[4]</a></td><td>Sphericity of a polyhedron = ratio of the surface area of the sphere of equivalent volume to the surface area of the polyhedron</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="circularity" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id9">[5]</a></td><td>Circularity of a polygon = ratio of the perimeter of the circle of equivalent area to the perimeter of the polygon</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="convexity" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[6]</td><td><em>(<a class="fn-backref" href="#id10">1</a>, <a class="fn-backref" href="#id17">2</a>)</em> Convexity of a polyhedron (face) = ratio of the volume (surface area) of the polyhedron (face) to the volume (surface area) of the convex hull of the polyhedron (face)</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="face-equation" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id11">[7]</a></td><td>A face equation is specified by the parameters <img class="math" src="_images/math/a28d5814fcd24a35c1137bebab31c38bd8822276.png" alt="d"/>, <img class="math" src="_images/math/7b772696751e5ee77543eadc95ddb9231acc6f9c.png" alt="a"/>, <img class="math" src="_images/math/ce757d09c60d7d2f92f98f8e37375b3ee2ca9564.png" alt="b"/> and <img class="math" src="_images/math/29d352c67d8ba660447e910d4241af68eee9ae6f.png" alt="c"/>, with the equation being: <img class="math" src="_images/math/58a665eebfa519c9f5dc8749e9caa48e3ca2b334.png" alt="a x + b y + c z = d"/>.  The vector <img class="math" src="_images/math/d2d63bdddfcb2f931891425d23ef8823ef63be96.png" alt="(a, b, c)"/> is pointing outwards of the polyhedron.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="nseeds" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id12">[8]</a></td><td>If a polyhedron has no neighbor on a face, a negative value is returned.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="lam" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id13">[9]</a></td><td>In the case of a lamellar tessellation with several lamella widths, lam` stands for the actual lamella width of the cell (starting from 1).</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="mode" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id14">[10]</a></td><td>In the case of a multimodal tessellation (e.g.in terms of cell size), mode` stands for the actual mode (starting from 1).</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="jmps2015" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[11]</td><td><em>(<a class="fn-backref" href="#id18">1</a>, <a class="fn-backref" href="#id19">2</a>, <a class="fn-backref" href="#id20">3</a>)</em> R Quey, JH Driver, PR Dawson, Intra-grain orientation distributions in hot-deformed aluminium: orientation dependence and relation to deformation mechanisms, Journal of the Mechanics and Physics of Solids, vol. 84, pp. 506-524, 2015.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="deltas" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label">[12]</td><td>For Gaussian distributions, they are equal to 1.349 times the values of <code class="xref c c-data docutils literal notranslate"><span class="pre">oridisanisoangles</span></code>.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="plateau" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id25">[13]</a></td><td>Number of iterations during which the objective function does not decrease</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="domtype" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id31">[14]</a></td><td>0 if on a domain vertex, 1 if on a domain edge and 2 if on a domain face</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="col-rodrigues" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id32">[15]</a></td><td>Applies to a mesh of Rodrigues space</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="col-stdtriangle" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id33">[16]</a></td><td>Applies to a mesh of the stereographic triangle</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fileformat.html" class="btn btn-neutral float-right" title="File and Directory Formats" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="neper_v.html" class="btn btn-neutral float-left" title="Visualization Module (-V)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

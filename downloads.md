@@ -15,6 +15,7 @@ It you use Neper for your own work, please mention it explicitly and cite one or
 - The current official release (and previous ones) is available on the [GitHub repository](https://github.com/rquey/neper/releases).   Older versions are archived [here](old-versions.md).
 
 - The PDF documentation is available [here](docs/neper.pdf).
+- The html documentation is available [here](doc/index.html).
 
 ## Continuous-integration versions
 

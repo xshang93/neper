@@ -1,0 +1,405 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Simulation Module (-S) &mdash; Neper 4.2.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Visualization Module (-V)" href="neper_v.html" />
+    <link rel="prev" title="Meshing Module (-M)" href="neper_m.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Neper
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                4.2.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="copying.html">Conditions of Use</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="neper_t.html">Tessellation Module (-T)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="neper_m.html">Meshing Module (-M)</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Simulation Module (-S)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#arguments">Arguments</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#input-data">Input Data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#results-options">Results Options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output-options">Output Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#output-directory">Output Directory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="neper_v.html">Visualization Module (-V)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exprskeys.html">Expressions and Keys</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fileformat.html">File and Directory Formats</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpl.html">GNU General Public License</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fdl.html">GNU Free Documentation License</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Neper</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Simulation Module (-S)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/neper_s.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <div class="rst-breadcrumbs-buttons" role="navigation" aria-label="breadcrumb navigation">
+      
+        <a href="neper_v.html" class="btn btn-neutral float-right" title="Visualization Module (-V)" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="neper_m.html" class="btn btn-neutral float-left" title="Meshing Module (-M)" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+  </div>
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <span class="target" id="neper-s"></span><div class="section" id="simulation-module-s">
+<span id="index-0"></span><h1>Simulation Module (-S)<a class="headerlink" href="#simulation-module-s" title="Permalink to this headline">¶</a></h1>
+<p>Module -S is the module for post-processing simulation results.  It can first be used to convert an FEPX raw result directory into a human-friendly <a class="reference internal" href="fileformat.html#simulation-directory"><span class="std std-ref">Simulation Directory (.sim)</span></a>, which is as simple as running:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ neper -S fepx_res_dir
+</pre></div>
+</div>
+<p>where <code class="file docutils literal notranslate"><span class="pre">fepx_res_dir</span></code> is the FEPX raw result directory. It can also be used for post-processing, to compute new results from existing simulation results or from the mesh.  New results can be computed for the nodes, elements, elsets and mesh.  Elset and mesh results are computed from the element results, by averaging or other statistical processing.  Results can also be imported from external files.  The results can be assigned names and defined from general expressions, as in <code class="xref c c-data docutils literal notranslate"><span class="pre">energy:0.1234*(crss-crss(step=0))^2</span></code>.  Results can also be removed or updated.
+It is also possible to merge simulation directories that represent successive parts of a simulation (e.g. resulting from FEPX restarts).
+The simulation directory can be loaded by module -V for result visualization.</p>
+<p>Here is what a typical run of module -S looks like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ neper -S fepx-simulation
+
+========================    N   e   p   e   r    =======================
+Info   : A software package for polycrystal generation and meshing.
+Info   : Version 4.0.0
+Info   : Built with: gsl|muparser|opengjk|openmp|nlopt|libscotch (full)
+Info   : Running on 8 threads.
+Info   : &lt;https://neper.info&gt;
+Info   : Copyright (C) 2003-2021, and GNU GPL&#39;d, by Romain Quey.
+Info   : Loading initialization file `/home/rquey/.neperrc&#39;...
+Info   : ---------------------------------------------------------------
+Info   : MODULE  -S loaded with arguments:
+Info   : [ini file] (none)
+Info   : [com line] fepx-simulation
+Info   : ---------------------------------------------------------------
+Info   : Reading input data...
+Info   :   - Reading arguments...
+Info   : Writing simulation directory from FEPX result directory...
+Info   :     [o] Writing directory `fepx-simulation.sim&#39;...
+Info   :   - Parsing FEPX results...
+Info   :     [i] Parsing file `fepx-simulation/post.report&#39;...
+Info   :     [i] Parsed file `fepx-simulation/post.report&#39;.
+Info   :     &gt; Partition number: 8.
+Info   :     &gt; Step      number: 10.
+Info   :     &gt; Node      number: 2752.
+Info   :     &gt; Element   number: 1596.
+Info   :   - Writing report file...
+Info   :     [o] Writing file `fepx-simulation.sim/report&#39;...
+Info   :     [o] Wrote file `fepx-simulation.sim/report&#39;.
+Info   :   - Writing inputs...
+Info   :     [o] Writing directory `fepx-simulation.sim/inputs&#39;...
+Info   :       . simulation.tess...
+Info   :       . simulation.msh...
+Info   :       . simulation.config...
+Info   :     [o] Wrote directory `fepx-simulation.sim/inputs&#39;.
+Info   :   - Writing results...
+Info   :     [o] Writing directory `fepx-simulation.sim/results&#39;...
+Info   :       . coo...       100%
+Info   :       . ori...       100%
+Info   :     [o] Wrote directory `fepx-simulation.sim/results&#39;.
+Info   :     [o] Wrote directory `fepx-simulation.sim&#39;.
+Info   : Elapsed time: 0.075 secs.
+========================================================================
+</pre></div>
+</div>
+<div class="section" id="arguments">
+<h2>Arguments<a class="headerlink" href="#arguments" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="input-data">
+<h3>Input Data<a class="headerlink" href="#input-data" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="cmdoption-arg-directory-name">
+<code class="descname">directory_name</code><code class="descclassname"></code><a class="headerlink" href="#cmdoption-arg-directory-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the name of the input directory, which can be:</p>
+<ul class="simple">
+<li>an FEPX raw result directory <a class="footnote-reference" href="#f1" id="id1">[1]</a>  (to convert into a simulation directory);</li>
+<li>a simulation directory;</li>
+<li>a series of simulation directories combined with <code class="xref c c-data docutils literal notranslate"><span class="pre">,</span></code> (to merge).</li>
+</ul>
+<p><strong>Default value</strong>: -.</p>
+</dd></dl>
+
+<dl class="option">
+<dt id="cmdoption-orispace">
+<code class="descname">-orispace</code><code class="descclassname"> &lt;file_name&gt;</code><a class="headerlink" href="#cmdoption-orispace" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the mesh of orientation space used for ODF computation.</p>
+<p><strong>Default value</strong>: -.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="results-options">
+<h3>Results Options<a class="headerlink" href="#results-options" title="Permalink to this headline">¶</a></h3>
+<p>Below are options to define the results to write.  In the case where a simulation directory is loaded as input, the specified results add to the existing results.  The results can be any FEPX raw result (if an FEPX raw result is provided as input), subresults (such as vector or tensor components), or new results defined from mesh and simulation results.  It is also possible to import results for files.  Any result can also be assigned a <em>name</em> alongside its expression. <a class="footnote-reference" href="#f2" id="id2">[2]</a>  Elset and mesh results are computed from the mesh (in the case of known variables) or by volume-weighted averaging of the element results (if they exist), in this order of priority.</p>
+<dl class="option">
+<dt id="cmdoption-res-node-elt-elset-mesh">
+<code class="descname">-res{node,elt,elset,mesh}</code><code class="descclassname"> &lt;res1&gt;,&lt;res2&gt;,...</code><a class="headerlink" href="#cmdoption-res-node-elt-elset-mesh" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the results to add, remove or update.  Provide as argument <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;res&gt;</span></code>, <code class="xref c c-data docutils literal notranslate"><span class="pre">'!&lt;res&gt;'</span></code> <a class="footnote-reference" href="#id5" id="id3">[*]</a>  or <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;res&gt;</span></code> to add, remove or update result <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;res&gt;</span></code>, respectively.  Provide <code class="xref c c-data docutils literal notranslate"><span class="pre">resX</span></code> or <code class="xref c c-data docutils literal notranslate"><span class="pre">resXY</span></code> to get a specific component of an existing result (<code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;X&gt;</span></code> or <code class="xref c c-data docutils literal notranslate"><span class="pre">XY</span></code>, vectorial or tensorial, respectively, 1-indexed) <a class="footnote-reference" href="#f3" id="id4">[3]</a> , <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;res&gt;:data(&lt;basename&gt;)</span></code> to import results from files of &lt;basename&gt; <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;basename&gt;</span></code> (the files of the different steps must be available as <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;basename&gt;.step*</span></code>), or any expression based on the mesh or simulation results (the mesh results can be any variables listed in <a class="reference internal" href="exprskeys.html#mesh-keys"><span class="std std-ref">Mesh Keys</span></a>). For nodes, <code class="xref c c-data docutils literal notranslate"><span class="pre">disp</span></code> can be used to get the node displacements from the node coordinates. To use a simulation result at a specific step, use <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;res&gt;(step=&lt;step_nb&gt;)</span></code>, where <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;res&gt;</span></code> is the result and <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;step_nb&gt;</span></code> is the step number. To define a name corresponding to a result, use <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;name&gt;:</span></code>, where <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;name&gt;</span></code> is the name and <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;expression&gt;</span></code> is its expression. To provide several values, combine them with <code class="xref c c-data docutils literal notranslate"><span class="pre">,</span></code>.</p>
+<p><strong>Default value</strong>: -.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="output-options">
+<h3>Output Options<a class="headerlink" href="#output-options" title="Permalink to this headline">¶</a></h3>
+<dl class="option">
+<dt id="cmdoption-o">
+<code class="descname">-o</code><code class="descclassname"> &lt;directory_name&gt;</code><a class="headerlink" href="#cmdoption-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the name of the output simulation directory (the default <code class="xref c c-data docutils literal notranslate"><span class="pre">.sim</span></code> extension is not added to the argument).</p>
+<p><strong>Default value</strong>: <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;fepx_result_directory&gt;.sim</span></code></p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="output-directory">
+<h2>Output Directory<a class="headerlink" href="#output-directory" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><code class="xref c c-data docutils literal notranslate"><span class="pre">.sim</span></code>: simulation directory (see <a class="reference internal" href="fileformat.html#simulation-directory"><span class="std std-ref">Simulation Directory (.sim)</span></a>).</li>
+</ul>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Below are some examples of use of neper -S.</p>
+<ul>
+<li><p class="first">Convert an FEPX raw result directory into a simulation directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ neper -S fepx-simulation
+</pre></div>
+</div>
+</li>
+<li><p class="first">Convert an FEPX raw result directory into a simulation directory of specified name:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ neper -S fepx-simulation -o foo
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add the nodal <code class="xref c c-data docutils literal notranslate"><span class="pre">x</span></code> and the elemental <code class="xref c c-data docutils literal notranslate"><span class="pre">vol</span></code> and <code class="xref c c-data docutils literal notranslate"><span class="pre">stress33</span></code> results to a simulation directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ neper -S simulation -resnode x -reselt vol,rr
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add the elemental <code class="xref c c-data docutils literal notranslate"><span class="pre">energy</span></code> result, defined as <code class="xref c c-data docutils literal notranslate"><span class="pre">0.12*(crss-crss(step=0))^2</span></code>, to a simulation directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ neper -S simulation -reselt &quot;energy:0.12*(crss-crss(step=0))^2&quot;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Override the elemental <code class="xref c c-data docutils literal notranslate"><span class="pre">energy</span></code> result, newly defined as <code class="xref c c-data docutils literal notranslate"><span class="pre">0.34*(crss-crss(step=0))^2</span></code>, in a simulation directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ neper -S simulation -reselt &#39;!energy,energy:0.34*(crss-crss(step=0))^2&#39;
+</pre></div>
+</div>
+</li>
+<li><p class="first">Add the elset and mesh <code class="xref c c-data docutils literal notranslate"><span class="pre">stress</span></code> results to a simulation directory (the <code class="xref c c-data docutils literal notranslate"><span class="pre">stress</span></code> result must exist for elements):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ neper -S simulation -reselset stress -resmesh stress
+</pre></div>
+</div>
+</li>
+<li><p class="first">Merge two simulation directories into a single simulation directory:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ neper -S cycle1.sim,cycle2.sim -o cycle1-2
+</pre></div>
+</div>
+</li>
+</ul>
+<table class="docutils footnote" frame="void" id="f1" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>For a restarted FEPX simulation, append <code class="xref c c-data docutils literal notranslate"><span class="pre">:restart_number</span></code> to the directory name to specify the restart number; otherwise, Neper attempts to find the simulation restart files with the highest index.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id2">[2]</a></td><td>Defining a name is mandatory for expressions containing divisions, as the <code class="xref c c-data docutils literal notranslate"><span class="pre">/</span></code> character cannot be used in file names.  The name cannot be a known variable.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="f3" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id4">[3]</a></td><td>The original result, <code class="xref c c-data docutils literal notranslate"><span class="pre">&lt;res&gt;</span></code>, must already be available in the simulation directory.</td></tr>
+</tbody>
+</table>
+<table class="docutils footnote" frame="void" id="id5" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[*]</a></td><td>note the single quotes</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="neper_v.html" class="btn btn-neutral float-right" title="Visualization Module (-V)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="neper_m.html" class="btn btn-neutral float-left" title="Meshing Module (-M)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
